@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
+<head>
+  <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Normalize.css for better cross-browser consistency -->
     <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
@@ -65,7 +66,48 @@
       <script type="text/javascript" src="js/restaurant_info.js"></script>
       <!-- Google Maps -->
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATi96BnTTiBHHCaBaQ4Esly55jSiMimrM&libraries=places&callback=initMap"></script>
-      <!-- End scripts -->
+
+      <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js').then(function(reg) {
+            if(!navigator.serviceWorker.controller) {
+              return;
+            }
+
+            if (reg.waiting) {
+              console.log("Update Ready to SW!");
+              return;
+            }
+
+            if (reg.installing) {
+              addEventListener('statechange', function() {
+                if (worker.state == 'installed') {
+                  console.log("Update Ready to SW!");
+                }
+              });
+              return;        
+            }
+
+            reg.addEventListener('updatefound', function() {
+              addEventListener('statechange', function() {
+                if (worker.state == 'installed') {
+                  console.log("Update Ready to SW!");
+                }
+              });
+            });
+  
+            console.log('Service worker registered: ', reg);
+          })
+          .catch(function(error) {
+            console.log('Service worker registration failed: ', error);
+          });
+
+          navigator.serviceWorker.ready.then(function(registeration) {
+            console.log('Service Worker Ready');
+          });
+        }
+      </script>
+    <!-- End scripts -->
     </div>
   </body>
 </html>
