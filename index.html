@@ -2,109 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Udacity Front End Restaurant Review Project">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Udacity Front End Restaurant Review Project">
 
-    <title>Restaurant Reviews</title>
-    
-    <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
-    <link rel="stylesheet" href="css/app.css">
-  </head>
+  <title>Restaurant Reviews</title>
+  
+  <link rel="stylesheet" src="css/normalize.css" />
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="grid-container-home">
+    <header class="header">
+      <nav>
+        <h1><a href="/">Restaurant Reviews</a></h1>
+      </nav>
+    </header>
 
-  <body>
-    <div class="grid-container-home">
-      <header class="header">
-        <nav>
-          <h1><a href="/">Restaurant Reviews</a></h1>
-        </nav>
-      </header>
+    <main id="maincontent">
+      <section id="map-container" class="map-container-home">
+        <div id="map"></div>
+      </section>
 
-      <main id="maincontent">
-        <section id="map-container" class="map-container-home">
-          <div id="map"></div>
-        </section>
+      <section>
+        <div class="filter-options">
+          <h2>Filter Results</h2>
+          <label for="neighborhoods-select" class="label-neighborhoods">Neighborhoods</label>
+          <select id="neighborhoods-select"
+          class="form-control" name="neighborhoods" onchange="updateRestaurants()"
+          tabindex="0"
+          aria-label="neighborhoods">
+            <option value="all">All Neighborhoods</option>
+          </select>
+          <label for="cuisines-select" class="label-cuisines">Cuisines</label>
+          <select id="cuisines-select" 
+          class="form-control" 
+          name="cuisines" onchange="updateRestaurants()"
+          tabindex="0"
+          aria-label="cuisines">
+            <option value="all">All Cuisines</option>
+          </select>
+        </div>
 
-        <section>
-          <div class="filter-options">
-            <h2>Filter Results</h2>
-            <label for="neighborhoods-select" class="label-neighborhoods">Neighborhoods</label>
-            <select id="neighborhoods-select"
-            class="form-control" name="neighborhoods" onchange="updateRestaurants()"
-            tabindex="0"
-            aria-label="neighborhoods">
-              <option value="all">All Neighborhoods</option>
-            </select>
-            <label for="cuisines-select" class="label-cuisines">Cuisines</label>
-            <select id="cuisines-select" 
-            class="form-control" 
-            name="cuisines" onchange="updateRestaurants()"
-            tabindex="0"
-            aria-label="cuisines">
-              <option value="all">All Cuisines</option>
-            </select>
-          </div>
+        <ul id="restaurants-list" class="restaurants-list"></ul>
+        
+      </section>
+    </main>
+    <footer id="footer" class="footer">
+      Copyright (c) 2018 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+    </footer>
 
-          <ul id="restaurants-list" class="restaurants-list"></ul>
-          
-        </section>
-      </main>
-      <footer id="footer" class="footer">
-        Copyright (c) 2018 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
-      </footer>
-
-      <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
-      <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATi96BnTTiBHHCaBaQ4Esly55jSiMimrM&libraries=places&callback=initMap"></script>
-      <script>
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/sw.js')
-          .then(function(reg) {
-            // If there is no controller, this page wans't loaded via a service worker, so they are looking at the latest version.
-            // Exit early
-            if(!navigator.serviceWorker.controller) {
-              return;
-            }
-
-            // If there's an updated worker already waiting, call indexController._updateReady()
-            if (reg.waiting) {
-              console.log("Update Ready to SW!");
-              return;
-            }
-
-            // If there's an updated worker installing, track its progress. If it becomes "installed", call indexController._updateReady()
-            if (reg.installing) {
-              addEventListener('statechange', function() {
-                if (worker.state == 'installed') {
-                  console.log("Update Ready to SW!");
-                }
-              });
-              return;        
-            }
-
-            // otherwise, listen for new installing workers arriving.
-            // If one arrives, track its progress. 
-            // If it becomes "installed", call 
-            // indexController._updateReady()
-            reg.addEventListener('updatefound', function() {
-              addEventListener('statechange', function() {
-                if (worker.state == 'installed') {
-                  console.log("Update Ready to SW!");
-                }
-              });
-            });
-
-            console.log('Service worker registered: ', reg);
-          })
-          .catch(function(error) {
-            console.log('Service worker registration failed: ', error);
-          });
-
-          navigator.serviceWorker.ready.then(function(registeration) {
-            console.log('Service Worker Ready');
-          });
-        }
-      </script>
-      
-    </div>
-  </body>
+    <script src="/js/app.js"></script>
+    <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+    <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATi96BnTTiBHHCaBaQ4Esly55jSiMimrM&libraries=places&callback=initMap"></script>
+        
+  </div>
+</body>
 </html>
