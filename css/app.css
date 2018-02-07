@@ -34,7 +34,7 @@ a:focus {
 }
 
 a:focus {
-    outline: 0;
+    outline: 1;
     box-shadow: 0 0 8px 3px rgba(255,255,255, 0.8);
 }
 
@@ -268,13 +268,21 @@ nav h1 a {
     text-transform: uppercase;
   }
 
-    .restaurants-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 10px;
-        padding: 10px;
-    }
+.restaurants-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.label-neighborhoods, .label-cuisines {
+    padding: 0 0 0 10px;
+}
+
+.label-cuisines {
+    padding: 0 0 0 20px;
+}
 
 /* ====================== Restaurant Details ====================== */
 .inside #map-container {
