@@ -27,21 +27,25 @@
       <section>
         <div class="filter-options">
           <h2>Filter Results</h2>
-          <label for="neighborhoods-select" class="label-neighborhoods">Neighborhoods</label>
-          <select id="neighborhoods-select"
-          class="form-control" name="neighborhoods" onchange="updateRestaurants()"
-          tabindex="0"
-          aria-label="neighborhoods">
-            <option value="all">All Neighborhoods</option>
-          </select>
-          <label for="cuisines-select" class="label-cuisines">Cuisines</label>
-          <select id="cuisines-select" 
-          class="form-control" 
-          name="cuisines" onchange="updateRestaurants()"
-          tabindex="0"
-          aria-label="cuisines">
-            <option value="all">All Cuisines</option>
-          </select>
+          <div>
+              <label for="neighborhoods-select" class="label-neighborhoods">Neighborhoods</label>
+              <select id="neighborhoods-select"
+              class="form-control" name="neighborhoods" onchange="updateRestaurants()"
+              tabindex="0"
+              aria-label="neighborhoods">
+                <option value="all">All Neighborhoods</option>
+              </select>
+          </div>
+          <div>
+              <label for="cuisines-select" class="label-cuisines">Cuisines</label>
+              <select id="cuisines-select" 
+              class="form-control" 
+              name="cuisines" onchange="updateRestaurants()"
+              tabindex="0"
+              aria-label="cuisines">
+                <option value="all">All Cuisines</option>
+              </select>
+          </div>
         </div>
 
         <ul id="restaurants-list" class="restaurants-list"></ul>
@@ -56,7 +60,7 @@
     <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
     <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATi96BnTTiBHHCaBaQ4Esly55jSiMimrM&libraries=places&callback=initMap"></script>
-        
+
   </div>
 </body>
 </html>
